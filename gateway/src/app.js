@@ -31,22 +31,40 @@ if (ENV.NODE_ENV !== 'production') {
   });
 }
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
+// Health check endpoints (available at both /api/health and /health)
+const healthHandler = (req, res) => {
   res.json({
     status: 'healthy',
     service: 'gateway',
     timestamp: new Date().toISOString(),
     database: getDbStatus(),
   });
+};
+app.get('/api/health', healthHandler);
+app.get('/health', healthHandler);
+app.get('/', (req, res) => {
+  res.json({
+    name: 'EchoArchitech AI API Gateway',
+    status: 'online',
+    health: '/api/health',
+  });
 });
 
-// Domain Modular Routes
+// Domain Modular Routes (mounted with /api prefix and root aliases)
 app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
+
 app.use('/api/user', userRoutes);
+app.use('/user', userRoutes);
+
 app.use('/api/projects', optionalAuth, projectRoutes);
+app.use('/projects', optionalAuth, projectRoutes);
+
 app.use('/api/ai', optionalAuth, aiRoutes);
+app.use('/ai', optionalAuth, aiRoutes);
+
 app.use('/api/github', githubRoutes);
+app.use('/github', githubRoutes);
 
 // Centralized Error Handling
 app.use(errorHandler);

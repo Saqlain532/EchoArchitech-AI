@@ -3,7 +3,11 @@
  * Handles API base URLs, JSON headers, and uniform error normalization.
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const rawUrl = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api')
+  .trim()
+  .replace(/\/+$/, '');
+// Ensure the base URL always points to the /api endpoint
+const API_BASE_URL = rawUrl.endsWith('/api') ? rawUrl : `${rawUrl}/api`;
 
 class HttpClient {
   constructor(baseUrl = API_BASE_URL) {
