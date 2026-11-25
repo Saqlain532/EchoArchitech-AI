@@ -162,7 +162,7 @@ export default function RoadmapGenerator() {
         </div>
 
         {errorNotice && (
-          <div className="p-3.5 rounded-xl border border-rose-500/30 bg-rose-500/10 text-xs text-rose-500 flex items-center justify-between">
+          <div className="p-3.5 rounded-xl border theme-border-rose theme-bg-rose-subtle text-xs theme-text-rose flex items-center justify-between">
             <span>{errorNotice}</span>
             <button
               type="button"
@@ -229,10 +229,10 @@ export default function RoadmapGenerator() {
                   </label>
                   <div
                     id="ai-engine-model"
-                    className="w-full py-2 px-3 rounded-lg border theme-border-subtle theme-bg-surface-elevated dark:bg-slate-800/40 text-xs theme-text-secondary flex items-center justify-between"
+                    className="w-full py-2 px-3 rounded-lg border theme-border-subtle theme-bg-surface-elevated text-xs theme-text-secondary flex items-center justify-between"
                   >
                     <span>Google Gemini & Groq Free Tier</span>
-                    <span className="text-[10px] font-mono text-emerald-500 font-semibold uppercase">
+                    <span className="text-[10px] font-mono theme-text-emerald font-semibold uppercase">
                       Cascading Fallback
                     </span>
                   </div>
@@ -325,17 +325,17 @@ export default function RoadmapGenerator() {
                 {/* Tech Stack Pills */}
                 <div className="flex flex-wrap items-center gap-2">
                   {previewData.architecture?.techStack?.frontend && (
-                    <span className="px-2.5 py-1 rounded-lg text-xs font-mono border theme-border-subtle bg-sky-500/10 text-sky-500">
+                    <span className="px-2.5 py-1 rounded-lg text-xs font-mono border theme-border-subtle theme-bg-cyan-subtle theme-text-cyan">
                       FE: {previewData.architecture.techStack.frontend}
                     </span>
                   )}
                   {previewData.architecture?.techStack?.backend && (
-                    <span className="px-2.5 py-1 rounded-lg text-xs font-mono border theme-border-subtle bg-emerald-500/10 text-emerald-500">
+                    <span className="px-2.5 py-1 rounded-lg text-xs font-mono border theme-border-subtle theme-bg-emerald-subtle theme-text-emerald">
                       BE: {previewData.architecture.techStack.backend}
                     </span>
                   )}
                   {previewData.architecture?.techStack?.database && (
-                    <span className="px-2.5 py-1 rounded-lg text-xs font-mono border theme-border-subtle bg-purple-500/10 text-purple-500">
+                    <span className="px-2.5 py-1 rounded-lg text-xs font-mono border theme-border-subtle theme-bg-brand-subtle theme-text-brand">
                       DB: {previewData.architecture.techStack.database}
                     </span>
                   )}
@@ -348,7 +348,7 @@ export default function RoadmapGenerator() {
                   type="button"
                   onClick={() => setActiveTab('architecture')}
                   className={`px-3.5 py-2 text-xs font-medium border-b-2 transition-all cursor-pointer ${activeTab === 'architecture'
-                    ? 'border-cyan-500 text-cyan-500 font-semibold'
+                    ? 'theme-border-brand theme-text-brand font-semibold'
                     : 'border-transparent theme-text-secondary hover:theme-text-primary'
                     }`}
                 >
@@ -358,7 +358,7 @@ export default function RoadmapGenerator() {
                   type="button"
                   onClick={() => setActiveTab('gantt')}
                   className={`px-3.5 py-2 text-xs font-medium border-b-2 transition-all cursor-pointer ${activeTab === 'gantt'
-                    ? 'border-cyan-500 text-cyan-500 font-semibold'
+                    ? 'theme-border-brand theme-text-brand font-semibold'
                     : 'border-transparent theme-text-secondary hover:theme-text-primary'
                     }`}
                 >
@@ -368,7 +368,7 @@ export default function RoadmapGenerator() {
                   type="button"
                   onClick={() => setActiveTab('tasks')}
                   className={`px-3.5 py-2 text-xs font-medium border-b-2 transition-all cursor-pointer ${activeTab === 'tasks'
-                    ? 'border-cyan-500 text-cyan-500 font-semibold'
+                    ? 'theme-border-brand theme-text-brand font-semibold'
                     : 'border-transparent theme-text-secondary hover:theme-text-primary'
                     }`}
                 >
@@ -378,7 +378,7 @@ export default function RoadmapGenerator() {
                   type="button"
                   onClick={() => setActiveTab('scaffold')}
                   className={`px-3.5 py-2 text-xs font-medium border-b-2 transition-all cursor-pointer ${activeTab === 'scaffold'
-                    ? 'border-cyan-500 text-cyan-500 font-semibold'
+                    ? 'theme-border-brand theme-text-brand font-semibold'
                     : 'border-transparent theme-text-secondary hover:theme-text-primary'
                     }`}
                 >
@@ -398,11 +398,11 @@ export default function RoadmapGenerator() {
                       {previewData.architecture.components.map((comp, idx) => (
                         <div
                           key={idx}
-                          className="p-3 rounded-lg border theme-border-subtle bg-slate-50/50 dark:bg-slate-900/30 space-y-1"
+                          className="p-3 rounded-lg border theme-border-subtle theme-bg-surface-elevated space-y-1"
                         >
                           <div className="flex items-center justify-between text-xs font-semibold theme-text-primary">
                             <span>{comp.name}</span>
-                            <span className="text-[10px] font-mono uppercase text-cyan-500">
+                            <span className="text-[10px] font-mono uppercase theme-text-cyan">
                               {comp.type}
                             </span>
                           </div>
@@ -433,11 +433,11 @@ export default function RoadmapGenerator() {
                     {previewData.roadmap?.tasks?.map((task, idx) => (
                       <div
                         key={idx}
-                        className="p-3.5 rounded-xl border theme-border-subtle bg-slate-50/40 dark:bg-slate-900/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                        className="p-3.5 rounded-xl border theme-border-subtle theme-bg-surface-elevated flex flex-col sm:flex-row sm:items-center justify-between gap-3"
                       >
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
-                            <span className="px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-cyan-500/10 text-cyan-500">
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold font-mono theme-bg-cyan-subtle theme-text-cyan">
                               Day {task.dayNumber}
                             </span>
                             <h4 className="text-xs sm:text-sm font-semibold theme-text-primary">
@@ -455,7 +455,7 @@ export default function RoadmapGenerator() {
                               {task.targetFiles.map((file, fIdx) => (
                                 <code
                                   key={fIdx}
-                                  className="px-1.5 py-0.5 rounded text-[11px] font-mono bg-slate-200/60 dark:bg-slate-800 text-cyan-600 dark:text-cyan-400"
+                                  className="px-1.5 py-0.5 rounded text-[11px] font-mono theme-bg-surface-subtle theme-text-cyan"
                                 >
                                   {file}
                                 </code>
@@ -477,13 +477,13 @@ export default function RoadmapGenerator() {
               {/* Tab 4: Scaffold Tree */}
               {activeTab === 'scaffold' && (
                 <div className="pt-2">
-                  <div className="p-4 rounded-xl border theme-border-subtle bg-slate-950 text-slate-200 font-mono text-xs overflow-x-auto space-y-1">
-                    <div className="text-slate-400 pb-2 border-b border-slate-800 mb-2 font-sans font-medium">
+                  <div className="p-4 rounded-xl border theme-border-subtle theme-bg-surface-subtle theme-text-primary font-mono text-xs overflow-x-auto space-y-1">
+                    <div className="theme-text-muted pb-2 border-b theme-border-subtle mb-2 font-sans font-medium">
                       Project Directory Scaffold Structure
                     </div>
                     {previewData.architecture?.scaffoldTree?.map((path, idx) => (
-                      <div key={idx} className="flex items-center gap-2 hover:text-cyan-400 transition-colors">
-                        <span className="text-slate-500">├──</span>
+                      <div key={idx} className="flex items-center gap-2 theme-hover-text-cyan transition-colors">
+                        <span className="theme-text-muted">├──</span>
                         <span>{path}</span>
                       </div>
                     ))}
@@ -493,11 +493,11 @@ export default function RoadmapGenerator() {
             </div>
 
             {/* Vercel-Style GitHub Repository Selection & Project Handoff */}
-            <div className="theme-card p-6 space-y-5 border-cyan-500/30">
+            <div className="theme-card p-6 space-y-5 theme-border-brand">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b theme-border-subtle pb-4">
                 <div className="space-y-1">
                   <h3 className="text-sm font-bold theme-text-primary flex items-center gap-2">
-                    <CheckCircleIcon className="w-4 h-4 text-emerald-500" />
+                    <CheckCircleIcon className="w-4 h-4 theme-text-emerald" />
                     <span>Select Public GitHub Repository (Vercel-Style)</span>
                   </h3>
                   <p className="text-xs theme-text-secondary">
@@ -506,12 +506,12 @@ export default function RoadmapGenerator() {
                 </div>
 
                 {/* Mode Selector Toggle */}
-                <div className="flex items-center bg-slate-200/60 dark:bg-slate-800/70 p-0.5 rounded-lg text-xs">
+                <div className="flex items-center theme-bg-surface-subtle p-0.5 rounded-lg text-xs">
                   <button
                     type="button"
                     onClick={() => setRepoSelectMode('dropdown')}
                     className={`px-3 py-1 rounded-md transition-all cursor-pointer font-medium ${repoSelectMode === 'dropdown'
-                      ? 'bg-white dark:bg-slate-900 theme-text-primary shadow-xs'
+                      ? 'theme-bg-surface theme-text-primary shadow-xs'
                       : 'theme-text-muted hover:theme-text-primary'
                       }`}
                   >
@@ -521,7 +521,7 @@ export default function RoadmapGenerator() {
                     type="button"
                     onClick={() => setRepoSelectMode('custom')}
                     className={`px-3 py-1 rounded-md transition-all cursor-pointer font-medium ${repoSelectMode === 'custom'
-                      ? 'bg-white dark:bg-slate-900 theme-text-primary shadow-xs'
+                      ? 'theme-bg-surface theme-text-primary shadow-xs'
                       : 'theme-text-muted hover:theme-text-primary'
                       }`}
                   >
@@ -543,10 +543,10 @@ export default function RoadmapGenerator() {
                           placeholder="    Search repositories (e.g. api, ecommerce, react)..."
                           className="w-full theme-input text-xs py-2 px-3 pl-8"
                         />
-                        <span className="absolute left-2.5 top-2.5 text-xs text-slate-400">🔍  </span>
+                        <span className="absolute left-2.5 top-2.5 text-xs theme-text-muted">🔍  </span>
                       </div>
 
-                      <div className="max-h-48 overflow-y-auto space-y-1.5 p-1 border theme-border-subtle rounded-xl bg-slate-50/30 dark:bg-slate-900/30">
+                      <div className="max-h-48 overflow-y-auto space-y-1.5 p-1 border theme-border-subtle rounded-xl theme-bg-surface-elevated">
                         {filteredRepos.map((repo) => {
                           const isSelected = selectedRepoUrl === repo.url;
                           return (
@@ -555,8 +555,8 @@ export default function RoadmapGenerator() {
                               type="button"
                               onClick={() => setSelectedRepoUrl(repo.url)}
                               className={`w-full flex items-center justify-between p-2.5 rounded-lg text-left transition-all cursor-pointer ${isSelected
-                                ? 'bg-cyan-500/10 border border-cyan-500 text-cyan-600 dark:text-cyan-400 font-semibold shadow-xs'
-                                : 'hover:bg-slate-200/50 dark:hover:bg-slate-800/60 theme-text-secondary hover:theme-text-primary border border-transparent'
+                                ? 'theme-bg-brand-subtle border theme-border-brand theme-text-brand font-semibold shadow-xs'
+                                : 'theme-hover-bg theme-text-secondary theme-hover-text-primary border border-transparent'
                                 }`}
                             >
                               <div className="flex items-center gap-2 min-w-0">
@@ -567,7 +567,7 @@ export default function RoadmapGenerator() {
                               </div>
 
                               <div className="flex items-center gap-2 shrink-0 text-[10px] font-mono">
-                                <span className="px-1.5 py-0.5 rounded bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                                <span className="px-1.5 py-0.5 rounded theme-bg-surface-subtle theme-text-secondary">
                                   {repo.language}
                                 </span>
                                 {repo.stars > 0 && <span>⭐ {repo.stars}</span>}
@@ -580,14 +580,14 @@ export default function RoadmapGenerator() {
 
                       {selectedRepoUrl && (
                         <div className="text-xs theme-text-secondary flex items-center gap-2 pt-1 font-mono">
-                          <span className="text-emerald-500 font-bold">✓ Selected:</span>
+                          <span className="theme-text-emerald font-bold">✓ Selected:</span>
                           <span className="truncate">{selectedRepoUrl}</span>
                         </div>
                       )}
                     </div>
                   ) : (
                     /* If no repos fetched yet: Prompt to enter GitHub username */
-                    <form onSubmit={handleFetchInlineRepos} className="p-4 rounded-xl border border-dashed theme-border-subtle space-y-3 bg-slate-50/30 dark:bg-slate-900/20">
+                    <form onSubmit={handleFetchInlineRepos} className="p-4 rounded-xl border border-dashed theme-border-subtle space-y-3 theme-bg-surface-elevated">
                       <div className="flex items-center gap-2">
                         <GitHubIcon className="w-4 h-4 theme-text-primary" />
                         <span className="text-xs font-semibold theme-text-primary">

@@ -1,0 +1,156 @@
+.theme-bg-canvas {
+  background-color: var(--bg-canvas) !important;
+}
+
+.theme-bg-surface {
+  background-color: var(--bg-surface) !important;
+}
+
+.theme-bg-surface-elevated {
+  background-color: var(--bg-surface-elevated) !important;
+}
+
+.theme-bg-surface-subtle {
+  background-color: var(--bg-surface-subtle) !important;
+}
+
+.theme-bg-glass {
+  background-color: var(--bg-glass) !important;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+
+.theme-bg-brand-subtle {
+  background-color: var(--accent-brand-subtle) !important;
+}
+
+.theme-bg-cyan {
+  background-color: var(--accent-cyan) !important;
+}
+
+.theme-bg-rose {
+  background-color: var(--accent-rose) !important;
+}
+
+.theme-bg-overlay {
+  background-color: var(--bg-overlay) !important;
+}
+
+.theme-bg-cyan-subtle {
+  background-color: var(--accent-cyan-subtle) !important;
+}
+
+.theme-border-cyan-subtle {
+  border-color: var(--accent-cyan-subtle) !important;
+}
+
+.theme-bg-emerald-subtle {
+  background-color: var(--accent-emerald-subtle) !important;
+}
+
+.theme-bg-rose-subtle {
+  background-color: var(--accent-rose-subtle) !important;
+}
+
+.theme-hover-bg:hover {
+  background-color: var(--bg-hover) !important;
+}
+
+.theme-hover-bg-rose:hover {
+  background-color: var(--accent-rose-subtle) !important;
+}
+
+.theme-bg-mesh,
+.bg-gradient-mesh {
+  background-color: var(--bg-surface-elevated) !important;
+  background-image: var(--gradient-mesh) !important;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.theme-text-primary {
+  color: var(--text-primary) !important;
+}
+
+.theme-text-inverse {
+  color: var(--text-inverse) !important;
+}
+
+.theme-text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.theme-text-muted {
+  color: var(--text-muted) !important;
+}
+
+.theme-text-brand {
+  color: var(--accent-brand) !important;
+}
+
+.theme-text-cyan {
+  color: var(--accent-cyan) !important;
+}
+
+.theme-text-emerald {
+  color: var(--accent-emerald) !important;
+}
+
+.theme-text-rose {
+  color: var(--accent-rose) !important;
+}
+
+.theme-hover-text-rose:hover {
+  color: var(--accent-rose) !important;
+}
+
+.theme-hover-text-cyan:hover {
+  color: var(--accent-cyan) !important;
+}
+
+.theme-hover-text-primary:hover {
+  color: var(--text-primary) !important;
+}
+
+.theme-hover-border-brand:hover {
+  border-color: var(--accent-brand) !important;
+}
+
+.theme-text-gradient {
+  background: var(--gradient-linear);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.theme-border-subtle {
+  border-color: var(--border-subtle) !important;
+}
+
+.theme-border-strong {
+  border-color: var(--border-strong) !important;
+}
+
+.theme-border-brand {
+  border-color: var(--accent-brand) !important;
+}
+
+.theme-border-rose {
+  border-color: var(--accent-rose) !important;
+}
+
+.theme-border-rose-subtle {
+  border-color: var(--accent-rose-subtle) !important;
+}
+
+.theme-shadow-card {
+  box-shadow: var(--card-shadow) !important;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

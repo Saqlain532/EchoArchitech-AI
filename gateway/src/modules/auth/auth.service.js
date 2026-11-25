@@ -1,8 +1,18 @@
 import jwt from 'jsonwebtoken';
 import { User } from '../../models/User.model.js';
 import { ENV } from '../../config/env.js';
+import { isDbConnected } from '../../config/db.js';
 
 export class AuthService {
+  static ensureDatabaseConnection() {
+    if (isDbConnected()) return;
+
+    const error = new Error('Sign-in is temporarily unavailable. Please try again in a moment.');
+    error.status = 503;
+    error.expose = true;
+    throw error;
+  }
+
   /**
    * Issue signed JWT token
    */
@@ -24,6 +34,7 @@ export class AuthService {
    * Register a new user
    */
   static async register({ name, email, password, role, githubUsername }) {
+    this.ensureDatabaseConnection();
     const cleanEmail = email.toLowerCase().trim();
     const existing = await User.findOne({ email: cleanEmail });
     if (existing) {
@@ -57,6 +68,7 @@ export class AuthService {
    * Authenticate existing user with email and password
    */
   static async login({ email, password }) {
+    this.ensureDatabaseConnection();
     const cleanEmail = email.toLowerCase().trim();
     const user = await User.findOne({ email: cleanEmail }).select('+password');
 
@@ -90,6 +102,7 @@ export class AuthService {
       throw err;
     }
 
+    this.ensureDatabaseConnection();
     const cleanUsername = githubUsername.trim().toLowerCase();
     const cleanEmail = email ? email.toLowerCase().trim() : `${cleanUsername}@github.echoarchitect.ai`;
 
@@ -132,6 +145,7 @@ export class AuthService {
    * Get current authenticated user profile
    */
   static async getMe(userId) {
+    this.ensureDatabaseConnection();
     const user = await User.findById(userId);
     if (!user) {
       const err = new Error('User not found.');
@@ -145,6 +159,7 @@ export class AuthService {
    * Update user profile fields
    */
   static async updateProfile(userId, updateData) {
+    this.ensureDatabaseConnection();
     const user = await User.findById(userId);
     if (!user) {
       const err = new Error('User not found.');

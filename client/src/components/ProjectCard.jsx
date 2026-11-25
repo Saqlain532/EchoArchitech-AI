@@ -41,7 +41,7 @@ export default function ProjectCard({
                 e.stopPropagation();
                 onDelete(id, title);
               }}
-              className="p-1.5 rounded-lg text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer shrink-0"
+              className="p-1.5 rounded-lg theme-text-muted theme-hover-text-rose theme-hover-bg-rose transition-colors cursor-pointer shrink-0"
               title="Delete project"
             >
               <TrashIcon className="w-3.5 h-3.5" />

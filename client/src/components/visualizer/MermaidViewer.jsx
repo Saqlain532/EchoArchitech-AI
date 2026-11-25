@@ -152,20 +152,20 @@ export default function MermaidViewer({
       {/* Standard In-Page Card */}
       <div className={`theme-card flex flex-col overflow-hidden transition-all duration-300 ${className}`}>
         {/* Viewer Header / Toolbar */}
-        <div className="flex items-center justify-between px-4 py-2.5 border-b theme-border-subtle bg-slate-50/50 dark:bg-slate-900/40 text-xs">
+        <div className="flex items-center justify-between px-4 py-2.5 border-b theme-border-subtle theme-bg-surface-subtle text-xs">
           <div className="flex items-center gap-2 font-medium theme-text-primary">
-            <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
+            <span className="w-2 h-2 rounded-full theme-bg-cyan animate-pulse"></span>
             <span>{title}</span>
           </div>
 
           <div className="flex items-center gap-1.5">
             {allowZoom && (
-              <div className="flex items-center bg-slate-200/50 dark:bg-slate-800/60 rounded px-1 py-0.5 space-x-1">
+              <div className="flex items-center theme-bg-surface-subtle rounded px-1 py-0.5 space-x-1">
                 <button
                   type="button"
                   onClick={zoomOut}
                   title="Zoom Out"
-                  className="p-1 hover:text-cyan-500 transition-colors cursor-pointer"
+                  className="p-1 theme-hover-text-cyan transition-colors cursor-pointer"
                 >
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
@@ -175,7 +175,7 @@ export default function MermaidViewer({
                   type="button"
                   onClick={resetZoom}
                   title="Reset Zoom"
-                  className="text-[11px] font-mono px-1 hover:text-cyan-500 cursor-pointer"
+                  className="text-[11px] font-mono px-1 theme-hover-text-cyan cursor-pointer"
                 >
                   {Math.round(zoomLevel * 100)}%
                 </button>
@@ -183,7 +183,7 @@ export default function MermaidViewer({
                   type="button"
                   onClick={zoomIn}
                   title="Zoom In"
-                  className="p-1 hover:text-cyan-500 transition-colors cursor-pointer"
+                  className="p-1 theme-hover-text-cyan transition-colors cursor-pointer"
                 >
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -197,10 +197,10 @@ export default function MermaidViewer({
                 type="button"
                 onClick={handleCopy}
                 title="Copy Mermaid Code"
-                className="p-1.5 rounded hover:bg-slate-200/60 dark:hover:bg-slate-800 theme-text-secondary hover:theme-text-primary transition-colors cursor-pointer"
+                className="p-1.5 rounded theme-hover-bg theme-text-secondary theme-hover-text-primary transition-colors cursor-pointer"
               >
                 {copied ? (
-                  <span className="text-[11px] text-emerald-500 font-medium">Copied!</span>
+                  <span className="text-[11px] theme-text-emerald font-medium">Copied!</span>
                 ) : (
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -213,7 +213,7 @@ export default function MermaidViewer({
               type="button"
               onClick={openFullscreen}
               title="Fullscreen"
-              className="p-1.5 rounded hover:bg-slate-200/60 dark:hover:bg-slate-800 theme-text-secondary hover:theme-text-primary transition-colors cursor-pointer"
+              className="p-1.5 rounded theme-hover-bg theme-text-secondary theme-hover-text-primary transition-colors cursor-pointer"
             >
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
@@ -225,14 +225,14 @@ export default function MermaidViewer({
         {/* Diagram Canvas */}
         <div
           ref={containerRef}
-          className="relative flex-1 overflow-auto p-4 min-h-[220px] max-h-[550px] flex items-center justify-center bg-slate-50/20 dark:bg-slate-950/20 [&_svg]:max-w-full [&_svg]:h-auto"
+          className="relative flex-1 overflow-auto p-4 min-h-[220px] max-h-[550px] flex items-center justify-center theme-bg-canvas [&_svg]:max-w-full [&_svg]:h-auto"
         >
           {error ? (
             <div className="text-center p-6 space-y-2">
-              <span className="text-xs text-rose-500 font-semibold block">
+              <span className="text-xs theme-text-rose font-semibold block">
                 Mermaid Diagram Preview Unavailable
               </span>
-              <pre className="text-[11px] text-left max-w-md overflow-x-auto bg-slate-100 dark:bg-slate-800 p-3 rounded font-mono theme-text-secondary">
+              <pre className="text-[11px] text-left max-w-md overflow-x-auto theme-bg-surface-subtle p-3 rounded font-mono theme-text-secondary">
                 {chart}
               </pre>
             </div>
@@ -244,7 +244,7 @@ export default function MermaidViewer({
             />
           ) : (
             <div className="flex flex-col items-center justify-center text-xs theme-text-muted space-y-2">
-              <div className="w-5 h-5 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-5 h-5 border-2 border-current border-t-transparent theme-text-cyan rounded-full animate-spin"></div>
               <span>Rendering visual blueprint...</span>
             </div>
           )}
@@ -256,30 +256,30 @@ export default function MermaidViewer({
         typeof document !== 'undefined' &&
         createPortal(
           <div
-            className="fixed inset-0 z-[99999] bg-slate-950/80 backdrop-blur-md flex flex-col p-2 sm:p-4 md:p-6 animate-in fade-in duration-200"
+            className="fixed inset-0 z-[99999] theme-bg-glass backdrop-blur-md flex flex-col p-2 sm:p-4 md:p-6 animate-in fade-in duration-200"
             role="dialog"
             aria-modal="true"
             aria-label={title}
           >
-            <div className="w-full h-full flex flex-col rounded-2xl border theme-border theme-bg-surface-elevated shadow-2xl overflow-hidden bg-white dark:bg-slate-900">
+            <div className="w-full h-full flex flex-col rounded-2xl border theme-border-strong theme-bg-surface-elevated shadow-2xl overflow-hidden">
               {/* Fullscreen Toolbar */}
-              <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b theme-border-subtle bg-slate-50/70 dark:bg-slate-900/70 text-xs sm:text-sm">
+              <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b theme-border-subtle theme-bg-surface text-xs sm:text-sm">
                 <div className="flex items-center gap-2.5 font-semibold theme-text-primary min-w-0">
-                  <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 animate-pulse shrink-0"></span>
+                  <span className="w-2.5 h-2.5 rounded-full theme-bg-cyan animate-pulse shrink-0"></span>
                   <span className="truncate">{title}</span>
-                  <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono border theme-border-subtle bg-cyan-500/10 text-cyan-500 font-medium shrink-0">
+                  <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono border theme-border-subtle theme-bg-cyan-subtle theme-text-cyan font-medium shrink-0">
                     Fullscreen Mode
                   </span>
                 </div>
 
                 <div className="flex items-center gap-2 shrink-0">
                   {allowZoom && (
-                    <div className="flex items-center bg-slate-200/60 dark:bg-slate-800/80 rounded-lg px-2 py-1 space-x-1.5">
+                    <div className="flex items-center theme-bg-surface-subtle rounded-lg px-2 py-1 space-x-1.5">
                       <button
                         type="button"
                         onClick={zoomOut}
                         title="Zoom Out"
-                        className="p-1 hover:text-cyan-500 transition-colors cursor-pointer"
+                        className="p-1 theme-hover-text-cyan transition-colors cursor-pointer"
                       >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
@@ -289,7 +289,7 @@ export default function MermaidViewer({
                         type="button"
                         onClick={resetZoom}
                         title="Reset Zoom"
-                        className="text-xs font-mono px-1.5 hover:text-cyan-500 cursor-pointer"
+                        className="text-xs font-mono px-1.5 theme-hover-text-cyan cursor-pointer"
                       >
                         {Math.round(zoomLevel * 100)}%
                       </button>
@@ -297,7 +297,7 @@ export default function MermaidViewer({
                         type="button"
                         onClick={zoomIn}
                         title="Zoom In"
-                        className="p-1 hover:text-cyan-500 transition-colors cursor-pointer"
+                        className="p-1 theme-hover-text-cyan transition-colors cursor-pointer"
                       >
                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -307,7 +307,7 @@ export default function MermaidViewer({
                         type="button"
                         onClick={resetZoom}
                         title="Reset to 100%"
-                        className="text-[11px] font-medium px-1.5 py-0.5 rounded hover:bg-slate-300/60 dark:hover:bg-slate-700 theme-text-secondary transition-colors cursor-pointer"
+                        className="text-[11px] font-medium px-1.5 py-0.5 rounded theme-hover-bg theme-text-secondary transition-colors cursor-pointer"
                       >
                         Fit
                       </button>
@@ -319,10 +319,10 @@ export default function MermaidViewer({
                       type="button"
                       onClick={handleCopy}
                       title="Copy Mermaid Code"
-                      className="px-2.5 py-1.5 rounded-lg hover:bg-slate-200/60 dark:hover:bg-slate-800 theme-text-secondary hover:theme-text-primary transition-colors flex items-center gap-1.5 text-xs font-medium cursor-pointer"
+                      className="px-2.5 py-1.5 rounded-lg theme-hover-bg theme-text-secondary theme-hover-text-primary transition-colors flex items-center gap-1.5 text-xs font-medium cursor-pointer"
                     >
                       {copied ? (
-                        <span className="text-emerald-500 font-semibold">Copied!</span>
+                        <span className="theme-text-emerald font-semibold">Copied!</span>
                       ) : (
                         <>
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -338,13 +338,13 @@ export default function MermaidViewer({
                     type="button"
                     onClick={closeFullscreen}
                     title="Exit Fullscreen (Esc)"
-                    className="px-3 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 border border-rose-500/30 transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer"
+                    className="px-3 py-1.5 rounded-lg theme-bg-rose-subtle theme-hover-bg-rose theme-text-rose border theme-border-rose transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                     <span>Close</span>
-                    <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[10px] bg-rose-500/20 text-rose-400 font-mono">
+                    <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[10px] theme-bg-rose-subtle theme-text-rose font-mono">
                       ESC
                     </kbd>
                   </button>
@@ -354,14 +354,14 @@ export default function MermaidViewer({
               {/* Fullscreen Canvas - Fills 100% available space with scroll / pan support */}
               <div
                 ref={fullscreenCanvasRef}
-                className="relative flex-1 w-full h-full min-h-0 overflow-auto p-6 sm:p-8 flex items-center justify-center bg-slate-50/30 dark:bg-slate-950/40 [&_svg]:max-w-full [&_svg]:h-auto"
+                className="relative flex-1 w-full h-full min-h-0 overflow-auto p-6 sm:p-8 flex items-center justify-center theme-bg-canvas [&_svg]:max-w-full [&_svg]:h-auto"
               >
                 {error ? (
                   <div className="text-center p-6 space-y-2">
-                    <span className="text-sm text-rose-500 font-semibold block">
+                    <span className="text-sm theme-text-rose font-semibold block">
                       Mermaid Diagram Preview Unavailable
                     </span>
-                    <pre className="text-xs text-left max-w-xl overflow-x-auto bg-slate-100 dark:bg-slate-800 p-4 rounded font-mono theme-text-secondary">
+                    <pre className="text-xs text-left max-w-xl overflow-x-auto theme-bg-surface-subtle p-4 rounded font-mono theme-text-secondary">
                       {chart}
                     </pre>
                   </div>
@@ -373,7 +373,7 @@ export default function MermaidViewer({
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center text-sm theme-text-muted space-y-3">
-                    <div className="w-6 h-6 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-6 h-6 border-2 border-current border-t-transparent theme-text-cyan rounded-full animate-spin"></div>
                     <span>Rendering visual blueprint...</span>
                   </div>
                 )}

@@ -58,7 +58,7 @@ export default function Homepage() {
         <div>
           <Link
             to="/new"
-            className="theme-btn-brand text-xs sm:text-sm no-underline shadow-xs cursor-pointer flex items-center gap-1.5"
+            className="theme-btn-brand text-xs sm:text-sm no-underline cursor-pointer flex items-center gap-1.5"
           >
             <PlusIcon />
             <span>Generate New Project</span>
@@ -82,7 +82,7 @@ export default function Homepage() {
                 className="text-sm font-semibold uppercase tracking-wider theme-text-muted flex items-center gap-2"
               >
                 <span>Active Projects</span>
-                <span className="px-2 py-0.5 rounded-full text-xs font-mono bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                <span className="px-2 py-0.5 rounded-full text-xs font-mono theme-bg-cyan-subtle theme-text-cyan border theme-border-subtle">
                   {projects.length}
                 </span>
               </h2>
@@ -112,11 +112,11 @@ export default function Homepage() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
               <div>
                 <h3 className="text-base font-bold theme-text-primary flex items-center gap-2">
-                  <SparklesIcon className="w-4 h-4 text-cyan-400" />
+                  <SparklesIcon className="w-4 h-4 theme-text-cyan" />
                   <span>Suggested Next Blueprints</span>
                 </h3>
                 <p className="text-xs theme-text-secondary">
-                  Curated architecture patterns tailored for your role as <strong className="text-cyan-700">{userRole}</strong>.
+                  Curated architecture patterns tailored for your role as <strong className="theme-text-cyan">{userRole}</strong>.
                 </p>
               </div>
             </div>
@@ -125,14 +125,14 @@ export default function Homepage() {
               {roleSuggestions.map((item) => (
                 <div
                   key={item.id}
-                  className="theme-card p-5 space-y-4 hover:border-cyan-500/30 transition-all flex flex-col justify-between"
+                  className="theme-card theme-hover-border-brand p-5 space-y-4 transition-all flex flex-col justify-between"
                 >
                   <div className="space-y-2.5">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="px-2 py-0.5 rounded text-[11px] font-mono bg-cyan-500/10 text-cyan-700 border border-cyan-500/20">
+                      <span className="px-2 py-0.5 rounded text-[11px] font-mono theme-bg-cyan-subtle theme-text-cyan border theme-border-subtle">
                         {item.badge}
                       </span>
-                      <span className="text-[11px] font-mono text-slate-400">{item.duration}</span>
+                      <span className="text-[11px] font-mono theme-text-muted">{item.duration}</span>
                     </div>
 
                     <h4 className="text-sm font-semibold theme-text-primary">{item.title}</h4>
@@ -142,13 +142,13 @@ export default function Homepage() {
 
                     {item.techStack && (
                       <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-500/10 text-sky-400 border theme-border-subtle">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono theme-bg-cyan-subtle theme-text-cyan border theme-border-subtle">
                           {item.techStack.frontend}
                         </span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border theme-border-subtle">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono theme-bg-emerald-subtle theme-text-emerald border theme-border-subtle">
                           {item.techStack.backend}
                         </span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-500/10 text-purple-400 border theme-border-subtle">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono theme-bg-brand-subtle theme-text-brand border theme-border-subtle">
                           {item.techStack.database}
                         </span>
                       </div>
@@ -159,7 +159,7 @@ export default function Homepage() {
                     <button
                       type="button"
                       onClick={() => handleStartSuggestion(item.prompt)}
-                      className="w-full py-2 px-3 rounded-lg border theme-border-subtle bg-slate-900 hover:bg-slate-800 text-xs font-medium text-cyan-700 hover:text-cyan-300 flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                      className="w-full py-2 px-3 rounded-lg border theme-border-subtle theme-bg-surface-elevated theme-hover-bg text-xs font-medium theme-text-cyan theme-hover-text-cyan flex items-center justify-center gap-1.5 transition-all cursor-pointer"
                     >
                       <SparklesIcon className="w-3.5 h-3.5" />
                       <span>Synthesize This Blueprint</span>
@@ -174,8 +174,8 @@ export default function Homepage() {
       ) : (
         /* Empty State with Curated Role Suggestions */
         <div className="space-y-8">
-          <div className="p-8 sm:p-10 rounded-2xl border theme-border-subtle bg-gradient-mesh text-center space-y-4 shadow-xl">
-            <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto text-cyan-600">
+          <div className="p-8 sm:p-10 rounded-2xl border theme-border-subtle bg-gradient-mesh text-center space-y-4 theme-shadow-card">
+            <div className="w-12 h-12 rounded-2xl theme-bg-cyan-subtle border theme-border-subtle flex items-center justify-center mx-auto theme-text-cyan">
               <SparklesIcon className="w-6 h-6" />
             </div>
             <div className="space-y-1.5 max-w-xl mx-auto">
@@ -184,7 +184,7 @@ export default function Homepage() {
               </h2>
               <p className="text-xs sm:text-sm theme-text-secondary leading-relaxed">
                 You haven't generated any projects yet. Select one of the curated blueprints below tailored for your role as{' '}
-                <strong className="text-cyan-500">{userRole}</strong>, or formulate your own custom architecture.
+                <strong className="theme-text-cyan">{userRole}</strong>, or formulate your own custom architecture.
               </p>
             </div>
             <div className="pt-2">
@@ -210,14 +210,14 @@ export default function Homepage() {
               {roleSuggestions.map((item) => (
                 <div
                   key={item.id}
-                  className="theme-card p-6 space-y-5 hover:border-cyan-500/40 transition-all flex flex-col justify-between"
+                  className="theme-card theme-hover-border-brand p-6 space-y-5 transition-all flex flex-col justify-between"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="px-2.5 py-1 rounded text-xs font-mono bg-cyan-500/10 text-cyan-800 border border-cyan-500/20">
+                      <span className="px-2.5 py-1 rounded text-xs font-mono theme-bg-cyan-subtle theme-text-cyan border theme-border-subtle">
                         {item.badge}
                       </span>
-                      <span className="text-xs font-mono text-slate-400">{item.duration}</span>
+                      <span className="text-xs font-mono theme-text-muted">{item.duration}</span>
                     </div>
 
                     <h4 className="text-base font-bold theme-text-primary">{item.title}</h4>
@@ -227,13 +227,13 @@ export default function Homepage() {
 
                     {item.techStack && (
                       <div className="flex flex-wrap items-center gap-2 pt-1">
-                        <span className="px-2.5 py-1 rounded text-[11px] font-mono bg-sky-500/10 text-sky-400 border theme-border-subtle">
+                        <span className="px-2.5 py-1 rounded text-[11px] font-mono theme-bg-cyan-subtle theme-text-cyan border theme-border-subtle">
                           {item.techStack.frontend}
                         </span>
-                        <span className="px-2.5 py-1 rounded text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border theme-border-subtle">
+                        <span className="px-2.5 py-1 rounded text-[11px] font-mono theme-bg-emerald-subtle theme-text-emerald border theme-border-subtle">
                           {item.techStack.backend}
                         </span>
-                        <span className="px-2.5 py-1 rounded text-[11px] font-mono bg-purple-500/10 text-purple-400 border theme-border-subtle">
+                        <span className="px-2.5 py-1 rounded text-[11px] font-mono theme-bg-brand-subtle theme-text-brand border theme-border-subtle">
                           {item.techStack.database}
                         </span>
                       </div>
@@ -244,7 +244,7 @@ export default function Homepage() {
                     <button
                       type="button"
                       onClick={() => handleStartSuggestion(item.prompt)}
-                      className="w-full py-2.5 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-xs font-semibold text-cyan-800 dark:text-cyan-400 hover:text-cyan-900 dark:hover:text-cyan-300 flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm"
+                      className="w-full py-2.5 px-4 rounded-xl theme-bg-cyan-subtle theme-hover-bg theme-border-cyan-subtle border text-xs font-semibold theme-text-cyan theme-hover-text-cyan flex items-center justify-center gap-2 transition-all cursor-pointer"
                     >
                       <SparklesIcon className="w-4 h-4" />
                       <span>Synthesize This Blueprint</span>
@@ -260,21 +260,21 @@ export default function Homepage() {
 
       {/* Delete Project Confirmation Modal */}
       {deleteTarget && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="theme-card max-w-md w-full p-6 space-y-5 border border-rose-500/30 shadow-2xl bg-slate-900">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 theme-bg-overlay backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="theme-card max-w-md w-full p-6 space-y-5 border theme-border-rose-subtle">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 shrink-0">
+              <div className="w-10 h-10 rounded-xl theme-bg-rose-subtle border theme-border-rose-subtle flex items-center justify-center theme-text-rose shrink-0">
                 <TrashIcon className="w-5 h-5" />
               </div>
               <div className="space-y-1">
                 <h3 className="text-base font-bold theme-text-primary">Delete Project</h3>
                 <p className="text-xs theme-text-secondary">
-                  Are you sure you want to permanently delete <strong className="text-rose-400">{deleteTarget.title}</strong>?
+                  Are you sure you want to permanently delete <strong className="theme-text-rose">{deleteTarget.title}</strong>?
                 </p>
               </div>
             </div>
 
-            <p className="text-xs theme-text-muted bg-slate-950 p-3 rounded-lg border theme-border-subtle">
+            <p className="text-xs theme-text-muted theme-bg-surface-subtle p-3 rounded-lg border theme-border-subtle">
               ⚠️ This will remove the project, sprint tasks, and synced commit log from MongoDB Atlas. This action cannot be undone.
             </p>
 
@@ -291,7 +291,7 @@ export default function Homepage() {
                 type="button"
                 onClick={handleDeleteConfirm}
                 disabled={isDeleting}
-                className="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-medium text-xs flex items-center gap-1.5 transition-all shadow-md cursor-pointer disabled:opacity-50"
+                className="px-4 py-2 rounded-lg theme-bg-rose hover:brightness-110 theme-text-inverse font-medium text-xs flex items-center gap-1.5 transition-all cursor-pointer disabled:opacity-50"
               >
                 {isDeleting ? (
                   <>

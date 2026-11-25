@@ -56,15 +56,15 @@ export default function ThemeToggle({ className = '' }) {
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="inline-flex items-center justify-center gap-2 rounded-lg border theme-border-subtle theme-bg-surface px-3 py-1.5 text-xs font-medium theme-text-secondary hover:theme-text-primary hover:theme-border-strong transition-all duration-150 cursor-pointer shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-brand)]"
+        className="inline-flex items-center justify-center gap-0 xl:gap-2 rounded-lg border theme-border-subtle theme-bg-surface px-2 xl:px-3 py-1.5 text-xs font-medium theme-text-secondary hover:theme-text-primary hover:theme-border-strong transition-all duration-150 cursor-pointer shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent-brand)]"
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="Select theme"
       >
         <CurrentIcon className="w-4 h-4 text-[var(--accent-brand)]" />
-        <span className="capitalize">{theme}</span>
+        <span className="hidden xl:inline capitalize">{theme}</span>
         <ChevronDownIcon
-          className={`w-3 h-3 text-[var(--text-muted)] transition-transform duration-200 ${
+          className={`hidden xl:block w-3 h-3 text-[var(--text-muted)] transition-transform duration-200 ${
             isOpen ? 'rotate-180' : ''
           }`}
         />

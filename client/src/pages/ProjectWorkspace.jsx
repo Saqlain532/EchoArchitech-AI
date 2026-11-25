@@ -177,24 +177,25 @@ export default function ProjectWorkspace() {
   // If no projects exist, render clean empty state asking user to generate one
   if (!loading && !activeProject && (!projects || projects.length === 0)) {
     return (
-      <div className="max-w-2xl mx-auto space-y-6 pt-8 ">
+      <div className="w-full max-w-2xl mx-auto space-y-4 sm:space-y-6 pt-4 sm:pt-8">
         <div className="flex items-center gap-2">
           <Link
             to="/"
-            className="theme-btn-ghost text-xs px-2.5 py-1.5 flex items-center gap-1.5 no-underline cursor-pointer"
+            className="w-fit max-w-full theme-btn-ghost text-xs px-2.5 py-1.5 flex items-center gap-1.5 no-underline cursor-pointer"
             aria-label="Back to Overview"
           >
             <ArrowLeftIcon />
-            <span>Back to Projects Overview</span>
+            <span className="sm:hidden">Back</span>
+            <span className="hidden sm:inline">Back to Projects Overview</span>
           </Link>
         </div>
 
-        <div className="p-10 rounded-2xl border theme-border-subtle theme-bg-mesh text-center space-y-4 shadow-xl">
-          <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto text-cyan-600">
+        <div className="p-6 sm:p-10 rounded-2xl border theme-border-subtle theme-bg-mesh text-center space-y-4 theme-shadow-card">
+          <div className="w-12 h-12 rounded-2xl theme-bg-cyan-subtle border theme-border-subtle flex items-center justify-center mx-auto theme-text-cyan">
             <GitHubIcon className="w-6 h-6" />
           </div>
           <div className="space-y-1.5 max-w-md mx-auto">
-            <h2 className="text-xl sm:text-2xl font-bold theme-text-primary">
+            <h2 className="text-lg sm:text-2xl font-bold theme-text-primary">
               No Projects Ready for GitHub Sync
             </h2>
             <p className="text-xs sm:text-sm theme-text-secondary leading-relaxed">
@@ -204,7 +205,7 @@ export default function ProjectWorkspace() {
           <div className="pt-2">
             <Link
               to="/new"
-              className="theme-btn-brand text-xs sm:text-sm px-5 py-2.5 inline-flex items-center gap-2 cursor-pointer no-underline"
+              className="w-full sm:w-auto justify-center text-center theme-btn-brand text-xs sm:text-sm px-4 sm:px-5 py-2.5 inline-flex items-center gap-2 cursor-pointer no-underline"
             >
               <PlusIcon className="w-4 h-4" />
               <span>Generate Architecture Roadmap</span>
@@ -219,24 +220,25 @@ export default function ProjectWorkspace() {
     <div className="space-y-6">
       {/* Workspace Header & Back Navigation */}
       <div className="space-y-4 border-b theme-border-subtle pb-6">
-        <div className="flex items-center justify-between gap-2 flex-wrap">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-3">
+          <div className="flex min-w-0 flex-wrap items-center gap-2 sm:gap-3">
             <Link
               to="/"
-              className="theme-btn-ghost text-xs px-2.5 py-1.5 flex items-center gap-1.5 cursor-pointer"
+              className="theme-btn-ghost text-xs px-2.5 py-1.5 flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
               aria-label="Back to Overview"
             >
               <ArrowLeftIcon />
-              <span>Back to Projects</span>
+              <span className="sm:hidden">Back</span>
+              <span className="hidden sm:inline">Back to Projects</span>
             </Link>
 
             {projects && projects.length > 1 && (
-              <div className="flex items-center gap-1.5 border-l theme-border-subtle pl-3">
+              <div className="flex min-w-0 items-center gap-1.5 border-l theme-border-subtle pl-2 sm:pl-3">
                 <span className="text-[11px] theme-text-muted">Switch:</span>
                 <select
                   value={project._id || project.slug || project.id || ''}
                   onChange={(e) => navigate(`/project/${e.target.value}`)}
-                  className="theme-input text-xs py-1 px-2.5 font-medium cursor-pointer"
+                  className="theme-input max-w-[140px] sm:max-w-[220px] truncate text-xs py-1 px-2.5 font-medium cursor-pointer"
                 >
                   {projects.map((p) => {
                     const val = p._id || p.slug || p.id;
@@ -252,21 +254,22 @@ export default function ProjectWorkspace() {
           </div>
 
           {/* Action Toolbar: Export ARCHITECTURE.md & Delete Project */}
-          <div className="flex items-center gap-2">
+          <div className="flex w-full flex-wrap items-center justify-end gap-2 sm:w-auto">
             <button
               type="button"
               onClick={handleExportArchitecture}
-              className="px-3 py-1.5 rounded-lg border theme-border-subtle bg-slate-900/60 hover:bg-slate-800 text-xs font-medium text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 transition-all shadow-sm cursor-pointer"
+              className="px-2 sm:px-3 py-1.5 rounded-lg border theme-border-subtle theme-bg-surface-elevated theme-hover-bg text-xs font-medium theme-text-cyan theme-hover-text-cyan flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap"
               title="Download compiled architecture, Gantt, and sprint checklist as ARCHITECTURE.md"
             >
-              {copiedExport ? <FileTextIcon className="w-3.5 h-3.5 text-emerald-400" /> : <DownloadIcon className="w-3.5 h-3.5" />}
-              <span>{copiedExport ? 'Exported!' : 'Export ARCHITECTURE.md'}</span>
+              {copiedExport ? <FileTextIcon className="w-3.5 h-3.5 theme-text-emerald" /> : <DownloadIcon className="w-3.5 h-3.5" />}
+              <span className="sm:hidden">{copiedExport ? 'Done' : 'Export'}</span>
+              <span className="hidden sm:inline">{copiedExport ? 'Exported!' : 'Export ARCHITECTURE.md'}</span>
             </button>
 
             <button
               type="button"
               onClick={() => setShowDeleteModal(true)}
-              className="px-3 py-1.5 rounded-lg border border-rose-500/20 bg-rose-500/10 hover:bg-rose-500/20 text-xs font-medium text-rose-400 hover:text-rose-300 flex items-center gap-1.5 transition-all cursor-pointer"
+              className="px-2 sm:px-3 py-1.5 rounded-lg border theme-border-rose-subtle theme-bg-rose-subtle theme-hover-bg-rose text-xs font-medium theme-text-rose theme-hover-text-rose flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap"
               title="Permanently delete project and tasks"
             >
               <TrashIcon className="w-3.5 h-3.5" />
@@ -278,7 +281,7 @@ export default function ProjectWorkspace() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="space-y-1">
             <div className="flex flex-wrap items-center gap-2.5">
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight theme-text-primary">
+              <h1 className="break-words text-2xl sm:text-3xl font-bold tracking-tight theme-text-primary">
                 {project.title}
               </h1>
               <span className="theme-badge theme-badge-cyan text-xs font-mono">
@@ -288,7 +291,7 @@ export default function ProjectWorkspace() {
                 {project.status || 'Active Sync'}
               </span>
             </div>
-            <p className="text-xs sm:text-sm theme-text-secondary max-w-2xl">
+            <p className="break-words text-xs sm:text-sm theme-text-secondary max-w-2xl">
               {project.description || 'Continuous architecture blueprint and automated GitHub commit monitor.'}
             </p>
           </div>
@@ -297,17 +300,17 @@ export default function ProjectWorkspace() {
           {project.architecture?.techStack && (
             <div className="flex flex-wrap items-center gap-2">
               {project.architecture.techStack.frontend && (
-                <span className="px-2.5 py-1 rounded text-xs font-mono bg-sky-500/10 text-sky-500 border theme-border-subtle">
+                <span className="px-2.5 py-1 rounded text-xs font-mono theme-bg-cyan-subtle theme-text-cyan border theme-border-subtle">
                   {project.architecture.techStack.frontend}
                 </span>
               )}
               {project.architecture.techStack.backend && (
-                <span className="px-2.5 py-1 rounded text-xs font-mono bg-emerald-500/10 text-emerald-500 border theme-border-subtle">
+                <span className="px-2.5 py-1 rounded text-xs font-mono theme-bg-emerald-subtle theme-text-emerald border theme-border-subtle">
                   {project.architecture.techStack.backend}
                 </span>
               )}
               {project.architecture.techStack.database && (
-                <span className="px-2.5 py-1 rounded text-xs font-mono bg-purple-500/10 text-purple-500 border theme-border-subtle">
+                <span className="px-2.5 py-1 rounded text-xs font-mono theme-bg-brand-subtle theme-text-brand border theme-border-subtle">
                   {project.architecture.techStack.database}
                 </span>
               )}
@@ -321,7 +324,7 @@ export default function ProjectWorkspace() {
             type="button"
             onClick={() => setActiveTab('sprint')}
             className={`px-3.5 py-2 text-xs font-medium border-b-2 transition-all cursor-pointer ${activeTab === 'sprint'
-              ? 'border-cyan-500 text-cyan-500 font-semibold'
+              ? 'theme-border-brand theme-text-brand font-semibold'
               : 'border-transparent theme-text-secondary hover:theme-text-primary'
               }`}
           >
@@ -331,7 +334,7 @@ export default function ProjectWorkspace() {
             type="button"
             onClick={() => setActiveTab('architecture')}
             className={`px-3.5 py-2 text-xs font-medium border-b-2 transition-all cursor-pointer ${activeTab === 'architecture'
-              ? 'border-cyan-500 text-cyan-500 font-semibold'
+              ? 'theme-border-brand theme-text-brand font-semibold'
               : 'border-transparent theme-text-secondary hover:theme-text-primary'
               }`}
           >
@@ -341,7 +344,7 @@ export default function ProjectWorkspace() {
             type="button"
             onClick={() => setActiveTab('gantt')}
             className={`px-3.5 py-2 text-xs font-medium border-b-2 transition-all cursor-pointer ${activeTab === 'gantt'
-              ? 'border-cyan-500 text-cyan-500 font-semibold'
+              ? 'theme-border-brand theme-text-brand font-semibold'
               : 'border-transparent theme-text-secondary hover:theme-text-primary'
               }`}
           >
@@ -351,7 +354,7 @@ export default function ProjectWorkspace() {
             type="button"
             onClick={() => setActiveTab('scaffold')}
             className={`px-3.5 py-2 text-xs font-medium border-b-2 transition-all cursor-pointer ${activeTab === 'scaffold'
-              ? 'border-cyan-500 text-cyan-500 font-semibold'
+              ? 'theme-border-brand theme-text-brand font-semibold'
               : 'border-transparent theme-text-secondary hover:theme-text-primary'
               }`}
           >
@@ -369,10 +372,11 @@ export default function ProjectWorkspace() {
         <>
           {/* View 1: Sprint Schedule + GitHub Sync (Split-Pane 60/40) */}
           {activeTab === 'sprint' && (
+            
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Left Pane: Daily Schedule Timeline (~60% width) */}
               <section
-                className="lg:col-span-7 space-y-6"
+                className="lg:col-span-7 lg:h-[calc(100vh-21rem)] lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain scrollbar-hidden space-y-6"
                 aria-label="Daily Schedule Timeline"
               >
                 <ScheduleTimeline
@@ -385,7 +389,7 @@ export default function ProjectWorkspace() {
 
               {/* Right Pane: GitHub Sync Panel (~40% width) */}
               <aside
-                className="lg:col-span-5 sticky top-24"
+                className="lg:col-span-5 lg:h-[calc(100vh-21rem)] lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain scrollbar-hidden"
                 aria-label="GitHub Synchronization Panel"
               >
                 <GitHubSyncPanel
@@ -415,11 +419,11 @@ export default function ProjectWorkspace() {
                     {project.architecture.components.map((comp, idx) => (
                       <div
                         key={idx}
-                        className="p-3 rounded-lg border theme-border-subtle bg-slate-50/50 dark:bg-slate-900/30 space-y-1"
+                        className="p-3 rounded-lg border theme-border-subtle theme-bg-surface-elevated space-y-1"
                       >
                         <div className="flex items-center justify-between text-xs font-semibold theme-text-primary">
                           <span>{comp.name}</span>
-                          <span className="text-[10px] font-mono uppercase text-cyan-500">
+                          <span className="text-[10px] font-mono uppercase theme-text-cyan">
                             {comp.type}
                           </span>
                         </div>
@@ -456,16 +460,16 @@ export default function ProjectWorkspace() {
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl border theme-border-subtle bg-slate-950 text-slate-200 font-mono text-xs overflow-x-auto space-y-1.5">
+              <div className="p-4 rounded-xl border theme-border-subtle theme-bg-surface-subtle theme-text-primary font-mono text-xs overflow-x-auto space-y-1.5">
                 {project.architecture?.scaffoldTree?.length > 0 ? (
                   project.architecture.scaffoldTree.map((path, idx) => (
-                    <div key={idx} className="flex items-center gap-2 hover:text-cyan-400 transition-colors">
-                      <span className="text-slate-500">├──</span>
+                    <div key={idx} className="flex items-center gap-2 theme-hover-text-cyan transition-colors">
+                      <span className="theme-text-muted">├──</span>
                       <span>{path}</span>
                     </div>
                   ))
                 ) : (
-                  <div className="text-slate-500 italic">No scaffold tree files defined.</div>
+                  <div className="theme-text-muted italic">No scaffold tree files defined.</div>
                 )}
               </div>
             </div>
@@ -475,21 +479,21 @@ export default function ProjectWorkspace() {
 
       {/* Delete Project Confirmation Modal */}
       {showDeleteModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="theme-card max-w-md w-full p-6 space-y-5 border border-rose-500/30 shadow-2xl bg-slate-900">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 theme-bg-overlay backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="theme-card max-w-md w-full p-6 space-y-5 border theme-border-rose-subtle">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 shrink-0">
+              <div className="w-10 h-10 rounded-xl theme-bg-rose-subtle border theme-border-rose-subtle flex items-center justify-center theme-text-rose shrink-0">
                 <TrashIcon className="w-5 h-5" />
               </div>
               <div className="space-y-1">
                 <h3 className="text-base font-bold theme-text-primary">Delete Project</h3>
                 <p className="text-xs theme-text-secondary">
-                  Are you sure you want to permanently delete <strong className="text-rose-400">{project.title}</strong>?
+                  Are you sure you want to permanently delete <strong className="theme-text-rose">{project.title}</strong>?
                 </p>
               </div>
             </div>
 
-            <p className="text-xs theme-text-muted bg-slate-950 p-3 rounded-lg border theme-border-subtle">
+            <p className="text-xs theme-text-muted theme-bg-surface-subtle p-3 rounded-lg border theme-border-subtle">
               ⚠️ This will permanently remove the project, its sprint task schedule, and synced commit history from MongoDB Atlas. This action cannot be undone.
             </p>
 
@@ -506,7 +510,7 @@ export default function ProjectWorkspace() {
                 type="button"
                 onClick={handleConfirmDelete}
                 disabled={isDeleting}
-                className="px-4 py-2 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-medium text-xs flex items-center gap-1.5 transition-all shadow-md cursor-pointer disabled:opacity-50"
+                className="px-4 py-2 rounded-lg theme-bg-rose hover:brightness-110 theme-text-inverse font-medium text-xs flex items-center gap-1.5 transition-all cursor-pointer disabled:opacity-50"
               >
                 {isDeleting ? (
                   <>

@@ -66,28 +66,28 @@ export default function WorkspaceBreadcrumb({
   };
 
   return (
-    <div className={`flex items-center gap-2 text-xs sm:text-sm ${className}`}>
+    <div className={`flex min-w-0 items-center gap-1.5 xl:gap-2 text-xs sm:text-sm ${className}`}>
       {/* Workspace Brand / Link to Overview */}
       <Link
         to="/"
-        className="font-semibold tracking-tight theme-text-primary hover:theme-text-brand transition-colors no-underline cursor-pointer"
+        className="hidden xl:inline font-semibold tracking-tight theme-text-primary hover:theme-text-brand transition-colors no-underline cursor-pointer"
       >
         {workspace}
       </Link>
-      <span className="theme-text-muted select-none">/</span>
+      <span className="hidden xl:inline theme-text-muted select-none">/</span>
 
       {/* Project Switcher Dropdown Anchor */}
-      <div className="relative inline-block text-left" ref={dropdownRef}>
+      <div className="relative inline-block min-w-0 text-left" ref={dropdownRef}>
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="flex items-center gap-2 px-2.5 py-1 rounded-lg theme-bg-surface-elevated border theme-border-subtle hover:theme-border-strong hover:bg-[var(--bg-hover)] transition-all duration-150 cursor-pointer shadow-xs focus:outline-none focus:ring-2 focus:ring-[var(--accent-brand)]"
+          className="flex min-w-0 max-w-full items-center gap-1.5 xl:gap-2 px-1.5 sm:px-2 xl:px-2.5 py-1 rounded-lg theme-bg-surface-elevated border theme-border-subtle hover:theme-border-strong hover:bg-[var(--bg-hover)] transition-all duration-150 cursor-pointer shadow-xs focus:outline-none focus:ring-2 focus:ring-[var(--accent-brand)]"
           aria-expanded={isOpen}
           aria-haspopup="listbox"
           aria-label="Switch project dropdown"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0" />
-          <span className="font-mono text-xs font-semibold theme-text-primary max-w-[130px] sm:max-w-[200px] truncate">
+          <span className="font-mono text-xs font-semibold theme-text-primary max-w-[72px] sm:max-w-[130px] xl:max-w-[200px] truncate">
             {currentProject ? currentProject.title : 'Select Project'}
           </span>
           <ChevronDownIcon
