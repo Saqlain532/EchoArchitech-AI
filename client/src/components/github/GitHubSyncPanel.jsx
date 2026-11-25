@@ -369,7 +369,7 @@ export default function GitHubSyncPanel({
           </span>
         </div>
 
-        <div className="space-y-2.5 max-h-[360px] overflow-y-auto pr-1">
+        <div className="space-y-2.5 max-h-[360px] overflow-y-auto pr-1 scrollbar-hidden">
           {projectCommits.length > 0 ? (
             projectCommits.map((commit, idx) => (
               <CommitItem
