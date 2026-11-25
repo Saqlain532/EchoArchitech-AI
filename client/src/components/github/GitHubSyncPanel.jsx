@@ -175,9 +175,9 @@ export default function GitHubSyncPanel({
 
         {/* Quick Connect Repo if Not Connected */}
         {!isConnected && (
-          <div className="p-4 rounded-xl border border-cyan-500/20 bg-slate-900 space-y-3">
+          <div className="p-4 rounded-xl border theme-border-cyan-subtle theme-bg-surface-elevated space-y-3">
             <div className="flex items-center justify-between">
-              <label className="text-[11px] font-semibold uppercase tracking-wider text-cyan-400">
+              <label className="text-[11px] font-semibold uppercase tracking-wider theme-text-cyan">
                 Link Public GitHub Repository
               </label>
               <div className="flex items-center gap-1 text-[11px]">
@@ -185,19 +185,19 @@ export default function GitHubSyncPanel({
                   type="button"
                   onClick={() => setRepoMode('dropdown')}
                   className={`px-2 py-0.5 rounded cursor-pointer transition-colors ${repoMode === 'dropdown'
-                    ? 'bg-cyan-500/20 text-cyan-300 font-medium'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'theme-bg-cyan-subtle theme-text-cyan font-medium'
+                    : 'theme-text-muted theme-hover-text-primary'
                     }`}
                 >
                   GitHub Repos
                 </button>
-                <span className="text-slate-600">|</span>
+                <span className="theme-text-muted">|</span>
                 <button
                   type="button"
                   onClick={() => setRepoMode('manual')}
                   className={`px-2 py-0.5 rounded cursor-pointer transition-colors ${repoMode === 'manual'
-                    ? 'bg-cyan-1000 text-cyan-300 font-medium'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'theme-bg-brand-subtle theme-text-brand font-medium'
+                    : 'theme-text-muted theme-hover-text-primary'
                     }`}
                 >
                   Direct URL
@@ -210,7 +210,7 @@ export default function GitHubSyncPanel({
                 {userRepos && userRepos.length > 0 ? (
                   <>
                     <div className="relative">
-                      <SearchIcon className="absolute left-2.5 top-2.5 w-3.5 h-3.5 text-slate-500" />
+                      <SearchIcon className="absolute left-2.5 top-2.5 w-3.5 h-3.5 theme-text-muted" />
                       <input
                         type="text"
                         value={repoSearch}
@@ -220,7 +220,7 @@ export default function GitHubSyncPanel({
                       />
                     </div>
 
-                    <div className="max-h-36 overflow-y-auto space-y-1 rounded-lg border theme-border-subtle p-1 bg-slate-850">
+                    <div className="max-h-36 overflow-y-auto space-y-1 rounded-lg border theme-border-subtle p-1 theme-bg-surface-elevated">
                       {userRepos
                         .filter((r) => {
                           if (!r) return false;
@@ -242,18 +242,18 @@ export default function GitHubSyncPanel({
                               type="button"
                               onClick={() => setConnectUrl(repoUrl)}
                               className={`w-full text-left p-2 rounded text-xs flex items-center justify-between transition-colors cursor-pointer ${isSelected
-                                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
-                                : 'text-slate-300 hover:bg-slate-800'
+                                ? 'theme-bg-cyan-subtle theme-text-cyan border theme-border-cyan-subtle'
+                                : 'theme-text-secondary theme-hover-bg'
                                 }`}
                             >
                               <div className="truncate">
                                 <div className="font-mono font-medium truncate">{r.fullName || r.name}</div>
                                 {r.description && (
-                                  <div className="text-[10px] text-slate-400 truncate">{r.description}</div>
+                                  <div className="text-[10px] theme-text-muted truncate">{r.description}</div>
                                 )}
                               </div>
                               {r.language && (
-                                <span className="ml-2 px-1.5 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-400 shrink-0">
+                                <span className="ml-2 px-1.5 py-0.5 rounded text-[10px] font-mono theme-bg-surface-subtle theme-text-secondary shrink-0">
                                   {r.language}
                                 </span>
                               )}
@@ -264,7 +264,7 @@ export default function GitHubSyncPanel({
                   </>
                 ) : (
                   <div className="space-y-2">
-                    <p className="text-[11px] text-slate-400">
+                    <p className="text-[11px] theme-text-muted">
                       Fetch public repositories from any GitHub username:
                     </p>
                     <div className="flex items-center gap-2">
@@ -297,7 +297,7 @@ export default function GitHubSyncPanel({
                 )}
 
                 {connectUrl && (
-                  <div className="text-[11px] font-mono text-cyan-400 truncate bg-slate-900 p-2 rounded border theme-border-subtle">
+                  <div className="text-[11px] font-mono theme-text-cyan truncate theme-bg-surface-elevated p-2 rounded border theme-border-subtle">
                     Selected: {connectUrl}
                   </div>
                 )}
@@ -316,7 +316,7 @@ export default function GitHubSyncPanel({
               type="button"
               onClick={handleConnectRepo}
               disabled={isConnecting || !connectUrl || !String(connectUrl).trim()}
-              className="w-full theme-btn-brand text-xs py-2 flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 shadow-sm"
+              className="w-full theme-btn-brand text-xs py-2 flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
             >
               {isConnecting ? (
                 <>
@@ -338,7 +338,7 @@ export default function GitHubSyncPanel({
           type="button"
           onClick={handleSync}
           disabled={isSyncing || !isConnected}
-          className="w-full theme-btn-primary text-xs sm:text-sm py-2.5 flex items-center justify-center gap-2 cursor-pointer shadow-xs disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full theme-btn-brand text-xs sm:text-sm py-2.5 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <RefreshIcon
             className={`w-4 h-4 ${isSyncing ? 'animate-spin' : ''}`}
@@ -347,7 +347,7 @@ export default function GitHubSyncPanel({
         </button>
 
         {syncFeedback && (
-          <div className="p-2 rounded bg-cyan-500/10 text-cyan-500 text-xs text-center font-medium animate-fade-in">
+          <div className="p-2 rounded theme-bg-cyan-subtle theme-text-cyan text-xs text-center font-medium animate-fade-in">
             {syncFeedback}
           </div>
         )}
