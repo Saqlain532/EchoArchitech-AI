@@ -111,9 +111,9 @@ export default function AuthModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 theme-bg-overlay backdrop-blur-sm animate-in fade-in duration-200">
       <div
-        className="w-full max-w-md theme-card theme-card-glow p-6 sm:p-7 relative shadow-2xl space-y-5"
+        className="w-full max-w-md theme-card theme-card-glow p-6 sm:p-7 relative space-y-5"
         role="dialog"
         aria-modal="true"
       >
@@ -121,7 +121,7 @@ export default function AuthModal({
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition-colors"
+          className="absolute top-4 right-4 p-1.5 rounded-lg theme-text-muted theme-hover-text-primary theme-hover-bg transition-colors"
           aria-label="Close authentication modal"
         >
           ✕
@@ -145,7 +145,7 @@ export default function AuthModal({
 
         {/* Error Alert */}
         {errorMessage && (
-          <div className="p-3 rounded-lg border border-rose-500/30 bg-rose-500/10 text-xs text-rose-500 font-medium">
+          <div className="p-3 rounded-lg border theme-border-rose-subtle theme-bg-rose-subtle text-xs theme-text-rose font-medium">
             {errorMessage}
           </div>
         )}
@@ -160,7 +160,7 @@ export default function AuthModal({
             }}
             className={`pb-2.5 px-3 border-b-2 transition-all cursor-pointer ${
               activeTab === 'login'
-                ? 'border-cyan-500 text-cyan-500 font-bold'
+                ? 'theme-border-brand theme-text-brand font-bold'
                 : 'border-transparent theme-text-secondary hover:theme-text-primary'
             }`}
           >
@@ -174,7 +174,7 @@ export default function AuthModal({
             }}
             className={`pb-2.5 px-3 border-b-2 transition-all cursor-pointer ${
               activeTab === 'signup'
-                ? 'border-cyan-500 text-cyan-500 font-bold'
+                ? 'theme-border-brand theme-text-brand font-bold'
                 : 'border-transparent theme-text-secondary hover:theme-text-primary'
             }`}
           >
@@ -188,7 +188,7 @@ export default function AuthModal({
             }}
             className={`pb-2.5 px-3 border-b-2 transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'github'
-                ? 'border-cyan-500 text-cyan-500 font-bold'
+                ? 'theme-border-brand theme-text-brand font-bold'
                 : 'border-transparent theme-text-secondary hover:theme-text-primary'
             }`}
           >
@@ -231,7 +231,7 @@ export default function AuthModal({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full theme-btn-brand text-xs sm:text-sm py-2.5 flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50"
+              className="w-full theme-btn-brand text-xs sm:text-sm py-2.5 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
               {isSubmitting ? (
                 <>
@@ -249,7 +249,7 @@ export default function AuthModal({
               <button
                 type="button"
                 onClick={handleFillDemo}
-                className="text-cyan-500 hover:underline font-mono text-[11px] font-semibold cursor-pointer"
+                className="theme-text-cyan hover:underline font-mono text-[11px] font-semibold cursor-pointer"
               >
                 ⚡ 1-Click Demo Architect
               </button>
@@ -331,7 +331,7 @@ export default function AuthModal({
                     value={customRole}
                     onChange={(e) => setCustomRole(e.target.value)}
                     placeholder="Enter your custom role (e.g. AI Research Engineer)"
-                    className="w-full theme-input text-xs py-2 px-2.5 font-medium border-cyan-500/50"
+                    className="w-full theme-input text-xs py-2 px-2.5 font-medium theme-border-brand"
                   />
                 </div>
               )}
@@ -356,7 +356,7 @@ export default function AuthModal({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full theme-btn-brand text-xs sm:text-sm py-2.5 flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50 mt-2"
+              className="w-full theme-btn-brand text-xs sm:text-sm py-2.5 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 mt-2"
             >
               {isSubmitting ? (
                 <>
@@ -373,9 +373,9 @@ export default function AuthModal({
         {/* TAB 3: Direct GitHub Onboarding */}
         {activeTab === 'github' && (
           <form onSubmit={handleGithubDirect} className="space-y-4">
-            <div className="p-3.5 rounded-xl border theme-border-subtle bg-slate-50/50 dark:bg-slate-900/40 text-xs theme-text-secondary leading-relaxed space-y-1">
+            <div className="p-3.5 rounded-xl border theme-border-subtle theme-bg-surface-elevated text-xs theme-text-secondary leading-relaxed space-y-1">
               <div className="font-semibold theme-text-primary flex items-center gap-1.5">
-                <CheckCircleIcon className="w-4 h-4 text-emerald-500" />
+                <CheckCircleIcon className="w-4 h-4 theme-text-emerald" />
                 <span>Zero-Token Public GitHub Onboarding</span>
               </div>
               <p>
@@ -403,7 +403,7 @@ export default function AuthModal({
             <button
               type="submit"
               disabled={isSubmitting || !directGithubUser.trim()}
-              className="w-full theme-btn-primary text-xs sm:text-sm py-2.5 flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50"
+              className="w-full theme-btn-brand text-xs sm:text-sm py-2.5 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
             >
               {isSubmitting ? (
                 <>
