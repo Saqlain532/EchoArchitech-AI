@@ -18,6 +18,22 @@ export const githubApi = {
   },
 
   /**
+   * Get recent static Green analysis reports for a project
+   */
+  async getGreenInsights(projectId) {
+    const res = await httpClient.get(`github/green/${projectId}`);
+    return res.data;
+  },
+
+  /**
+   * Re-scan source files from recent commits without syncing task diffs
+   */
+  async scanGreenInsights(projectId) {
+    const res = await httpClient.post(`github/green/${projectId}/scan`);
+    return res.data;
+  },
+
+  /**
    * Submit simulated commits for testing diff matching
    */
   async simulateCommits(projectId, commits) {

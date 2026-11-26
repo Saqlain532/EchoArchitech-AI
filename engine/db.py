@@ -60,5 +60,8 @@ def get_tasks_collection():
 def get_commits_collection():
     return Database.get_db()['commits']
 
+def get_green_analyses_collection():
+    return Database.get_db()['green_analyses']
+
 def get_users_collection():
     return Database.get_db()['users']

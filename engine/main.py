@@ -10,6 +10,7 @@ from config import settings
 from db import Database, get_projects_collection, get_tasks_collection, get_commits_collection
 from services.webhook_handler import WebhookHandler
 from services.github_poller import GitHubPoller
+from services.green_analysis_service import GreenAnalysisService
 from services.task_scheduler import TaskScheduler
 
 # Configure structured logging
@@ -149,6 +150,44 @@ def sync_public_repo(project_id: str):
     except Exception as e:
         logger.error(f"Sync error for project {project_id}: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+
+@app.get("/api/project/{project_id}/green-insights")
+def get_project_green_insights(project_id: str):
+    if not ObjectId.is_valid(project_id):
+        raise HTTPException(status_code=400, detail="Invalid project ID")
+
+    try:
+        analyses = GreenAnalysisService.get_recent(project_id)
+        return {
+            "success": True,
+            "data": {
+                "projectId": project_id,
+                "analyses": analyses,
+            },
+        }
+    except Exception as e:
+        logger.error("Green insights retrieval failed for project %s: %s", project_id, e)
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to retrieve Green Insights",
+        )
+
+@app.post("/api/project/{project_id}/green-insights/scan")
+def scan_project_green_insights(project_id: str):
+    if not ObjectId.is_valid(project_id):
+        raise HTTPException(status_code=400, detail="Invalid project ID")
+
+    try:
+        result = GitHubPoller.scan_project_green_insights(project_id)
+        return {"success": True, "data": result}
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error("Green insights scan failed for project %s: %s", project_id, e)
+        raise HTTPException(
+            status_code=500,
+            detail="Unable to scan Green Insights",
+        )
 
 @app.get("/api/project/{project_id}/status")
 def get_project_monitoring_status(project_id: str):

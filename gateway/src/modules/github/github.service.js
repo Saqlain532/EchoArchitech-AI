@@ -46,6 +46,38 @@ export class GitHubService {
   }
 
   /**
+   * Retrieves recent static Green analysis reports from the Python Engine
+   */
+  static async getGreenInsights(projectId) {
+    const engineUrl = ENV.ENGINE_URL || 'http://localhost:8000';
+    const response = await fetch(`${engineUrl}/api/project/${projectId}/green-insights`);
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Engine returned ${response.status}: ${errorText}`);
+    }
+
+    const data = await response.json();
+    return data.data;
+  }
+
+  /**
+   * Re-analyzes source files from recent commits without running task sync
+   */
+  static async scanGreenInsights(projectId) {
+    const engineUrl = ENV.ENGINE_URL || 'http://localhost:8000';
+    const response = await fetch(`${engineUrl}/api/project/${projectId}/green-insights/scan`, {
+      method: 'POST',
+    });
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Engine returned ${response.status}: ${errorText}`);
+    }
+
+    const data = await response.json();
+    return data.data;
+  }
+
+  /**
    * Submit manual / simulated commit for testing
    */
   static async submitManualCommit(projectId, commits) {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import ScheduleTimeline from '../components/schedule/ScheduleTimeline';
 import GitHubSyncPanel from '../components/github/GitHubSyncPanel';
+import GreenInsightsPanel from '../components/green/GreenInsightsPanel';
 import {
   ArrowLeftIcon,
   LoadingSpinner,
@@ -26,7 +27,7 @@ export default function ProjectWorkspace() {
     deleteProject,
     projects,
   } = useProject();
-  const [activeTab, setActiveTab] = useState('sprint'); // 'sprint' | 'architecture' | 'gantt' | 'scaffold'
+  const [activeTab, setActiveTab] = useState('sprint'); // 'sprint' | 'green' | 'architecture' | 'gantt' | 'scaffold'
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [copiedExport, setCopiedExport] = useState(false);
@@ -342,6 +343,16 @@ export default function ProjectWorkspace() {
           </button>
           <button
             type="button"
+            onClick={() => setActiveTab('green')}
+            className={`px-3.5 py-2 text-xs font-medium border-b-2 transition-all cursor-pointer ${activeTab === 'green'
+              ? 'theme-border-brand theme-text-brand font-semibold'
+              : 'border-transparent theme-text-secondary hover:theme-text-primary'
+              }`}
+          >
+            Green Insights
+          </button>
+          <button
+            type="button"
             onClick={() => setActiveTab('gantt')}
             className={`px-3.5 py-2 text-xs font-medium border-b-2 transition-all cursor-pointer ${activeTab === 'gantt'
               ? 'theme-border-brand theme-text-brand font-semibold'
@@ -436,6 +447,10 @@ export default function ProjectWorkspace() {
                 </div>
               )}
             </div>
+          )}
+
+          {activeTab === 'green' && (
+            <GreenInsightsPanel key={project._id || project.id} project={project} />
           )}
 
           {/* View 3: Sprint Gantt Chart */}

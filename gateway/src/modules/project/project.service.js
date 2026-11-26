@@ -244,6 +244,7 @@ export class ProjectService {
       Project.findByIdAndDelete(project._id),
       Task.deleteMany({ projectId: project._id }),
       Commit.deleteMany({ projectId: project._id }),
+      mongoose.connection.collection('green_analyses').deleteMany({ projectId: project._id }),
     ]);
 
     return { success: true, message: 'Project deleted successfully' };

@@ -53,7 +53,7 @@ export default function SidebarBrand({
       </div>
       <div className="flex flex-col truncate">
         <span className="text-sm font-semibold tracking-tight theme-text-primary">
-          EcoArchitech <span className="text-emerald-500">AI</span>
+          EcoArchitect <span className="text-emerald-500">AI</span>
         </span>
       </div>
     </div>

@@ -73,8 +73,8 @@ export default function GitHubSyncPanel({
           ? `Synced! Completed ${result.tasksCompleted} task(s).`
           : 'Repository checked. No new task diffs detected.'
       );
-    } catch {
-      setSyncFeedback('Sync triggered (polling public commits).');
+    } catch (err) {
+      setSyncFeedback(`Sync failed: ${err.message || 'Unable to reach the sync service.'}`);
     } finally {
       setIsSyncing(false);
       setTimeout(() => setSyncFeedback(null), 4000);
